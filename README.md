@@ -1,4 +1,4 @@
-#react-basic-router
+# stickyants-react-router
 
 A simple `react-router` alternative. The package implements basic routing functionality using react hooks. 
 
@@ -10,7 +10,7 @@ A simple `react-router` alternative. The package implements basic routing functi
 import * as React from 'react'; 
 import * as ReactDOM from 'react-dom';
 
-import { Route, Router, HashRouterDef } from 'react-basic-router';
+import { Route, Router, HashRouterDef } from 'stickyants-react-router';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
