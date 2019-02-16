@@ -16,10 +16,12 @@ export declare class HashRouterDef implements IRouterDef {
 }
 export declare class PopStateRouterDef implements IRouterDef {
     $onChange: (...args: any[]) => void;
+    oldFn: (data: any, title: string, url?: string) => void;
+    constructor();
     getCurrentPath: () => string;
     onMount: (cb: (...args: any[]) => void) => void;
     onUnmount: () => void;
-    onChange: (evt: HashChangeEvent) => void;
+    onChange: (evt: any) => void;
 }
 export interface IRouterProps {
     children: React.ReactNode;
@@ -28,9 +30,9 @@ export interface IRouterProps {
 export declare function Router({ children, definition }: IRouterProps): import("react").FunctionComponentElement<import("react").ProviderProps<string>>;
 export interface IRouteProps {
     path: string | RegExp;
-    children: React.ReactNode;
+    children?: React.ReactNode | React.ReactElement<any>;
     exact?: boolean;
-    onEnter?: (path: string) => void;
-    onLeave?: (path: string) => void;
+    onEnter?: () => void;
+    onLeave?: () => void;
 }
-export declare function Route({ path, exact, children, onEnter, onLeave }: IRouteProps): {};
+export declare function Route({ path, exact, children, onEnter, onLeave }: IRouteProps): React.ReactElement;
