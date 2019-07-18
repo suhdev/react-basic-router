@@ -10,11 +10,12 @@ A simple `react-router` alternative. The package implements basic routing functi
 import * as React from 'react'; 
 import * as ReactDOM from 'react-dom';
 
-import { Route, Router, HashRouterDef } from 'stickyants-react-router';
+import { Route, Router, createHashHistory } from 'stickyants-react-router';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { HashRouterDef, Route, Router } from '../index';
+
+const history = createHashHistory();
 
 function TestComponent(props) {
   return (<div>
@@ -31,7 +32,7 @@ function TestComponent(props) {
     </Route>
   </div>);
 }
-const def = new HashRouterDef();
+
 let el = document.getElementById('SomeElement');
 if (!el) {
   el = document.createElement('div');
@@ -39,26 +40,35 @@ if (!el) {
   document.querySelector('body').appendChild(el);
 }
 
-function onRootEnter(){
-  console.log('on root');
-}
-
-function onRootLeave(){
-  console.log('on root leaev');
-}
 
 ReactDOM.render(
-  <Router definition={def}>
-    <TestComponent />
-    <Route path="#/">
-      <div>Always render this</div>
-     </Route>
-    <Route path="#/" exact={true}
-    onEnter={onRootEnter}
-    onLeave={onRootLeave}>
-      <div>Render this only on root</div>
-     </Route>
-  </Router>,
+  <Router history={history}>
+      <Route path="/"><div data-testid="tmx">TMX</div></Route>
+      <Route path="/test"><div data-testid="tmz">TMZ</div>
+        <Route path="/test/:id">
+          <div data-testid="nestedroute">NESTED ROUTE</div>
+        </Route>
+
+        <Route path="/test/:id" isExact={true}>
+          <div data-testid="samenestedroute">SAME NESTED ROUTE</div>
+        </Route>
+        <div>
+          <Route path="/test/:id">
+            <div data-testid="anothernestedroute">ANOTHER NESTED ROUTE</div>
+          </Route>
+          <Route path="/test/element">
+            <div data-testid="stringnestedroute">STRING NESTED ROUTE</div>
+          </Route>
+          <Route path="/test/element/:id">
+            <div data-testid="elementnestedroute">ELEMENT NESTED ROUTE</div>
+          </Route>
+        </div>
+      </Route>
+      <div data-testid="xyz">XYZ</div>
+      <div>
+        <Route path="/test123"><div data-testid="incorrect">INCORRECT</div></Route>
+      </div>
+    </Router>,
   el);
 
 
