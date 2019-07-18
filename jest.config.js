@@ -1,6 +1,5 @@
 module.exports = {
   preset: 'ts-jest',
-  setTimeout: 30000,
   testEnvironment: 'node',
   "collectCoverageFrom": [
     "**/*.{ts,tsx}",
@@ -15,5 +14,5 @@ module.exports = {
       "lines": 80,
       "statements": -20
     }
-  }
+  },
 };
