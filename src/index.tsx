@@ -4,8 +4,8 @@ import { parsePath } from './util';
 const RouterContext = React.createContext<string>(null);
 export const RouteContext = React.createContext<{}>(null);
 
-export function useRouteParams() {
-  return React.useContext(RouteContext);
+export function useRouteParams<T>() {
+  return React.useContext(RouteContext) as T;
 }
 
 export interface IRouterHistory {

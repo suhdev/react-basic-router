@@ -1,6 +1,6 @@
 {
   "name": "stickyants-react-router",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A simple react router that uses hooks and functional components instead of class components. ",
   "main": "lib/index.js",
   "scripts": {
