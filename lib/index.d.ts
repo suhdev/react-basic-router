@@ -1,5 +1,6 @@
 import * as React from 'react';
 export declare const RouteContext: React.Context<{}>;
+export declare function useRouteParams(): {};
 export interface IRouterHistory {
     getCurrentPath(): string;
     listen(cb: (path: string, prevPath: string) => void): () => void;
