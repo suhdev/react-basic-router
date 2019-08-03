@@ -94,6 +94,8 @@ export const Route = ({
   }) => {
   const currentPath = React.useContext(RouterContext);
 
+  const parentParams = React.useContext(RouteContext);
+
   const paramsRef = React.useRef(null);
 
   const checkPath = React.useMemo(
@@ -104,13 +106,15 @@ export const Route = ({
     () => checkPath(currentPath, paramsRef.current),
     [currentPath]);
 
+
+
   const view = React.useMemo(
     () => <MemoRoute
       onEnter={onEnter}
       onLeave={onLeave}
       onUpdate={onUpdate}
-      params={params}>{children}</MemoRoute>,
-    [params]);
+      params={{ ...parentParams, ...params }}>{children}</MemoRoute>,
+    [params, parentParams]);
 
   return (params ? view : null);
 };
